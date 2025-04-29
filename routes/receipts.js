@@ -39,6 +39,11 @@ router.delete('/:email/:id', (req, res) => {
 // PUT update receipt
 router.put('/:email/:id', (req, res) => {
     const { email, id } = req.params;
+
+    console.log("DELETE endpoint hit");
+    console.log("Request params:", req.params);
+    console.log("Current receipts:", JSON.stringify(receipts, null, 2));
+
     const index = receipts.findIndex(d => d.email === email && d.id === id);
     if (index !== -1) {
         receipts[index] = { ...receipts[index], ...req.body };
