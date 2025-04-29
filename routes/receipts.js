@@ -19,7 +19,7 @@ router.get('/:email', (req, res) => {
 // POST add new receipt
 router.post('/:email', (req, res) => {
     const email = req.params.email;
-    const newReceipt = { ...req.body, email, id: Date.now().toString() };
+    const newReceipt = { ...req.body, email, id: Date.now() };
     receipts.push(newReceipt);
     res.status(201).json(newReceipt);
 });
@@ -27,7 +27,7 @@ router.post('/:email', (req, res) => {
 // DELETE receipt
 router.delete('/:email/:id', (req, res) => {
     const { email, id } = req.params;
-    const index = receipts.findIndex(d => d.email === email && d.id == id);
+    const index = receipts.findIndex(d => d.email === email && d.id == Number(id));
     if (index !== -1) {
         receipts.splice(index, 1);
         res.status(204).send();
