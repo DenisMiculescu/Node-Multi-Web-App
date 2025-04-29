@@ -16,6 +16,18 @@ router.get('/:email', (req, res) => {
     res.json(userReceipts);
 });
 
+// GET specific receipt by email and id
+router.get('/:email/:id', (req, res) => {
+    const { email, id } = req.params;
+    const receipt = receipts.find(d => d.email === email && d.id === id);
+
+    if (receipt) {
+        res.json(receipt);
+    } else {
+        res.status(404).send('Receipt not found');
+    }
+});
+
 // POST add new receipt
 router.post('/:email', (req, res) => {
     const email = req.params.email;
