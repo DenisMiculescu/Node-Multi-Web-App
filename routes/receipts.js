@@ -19,7 +19,7 @@ router.get('/:email', (req, res) => {
 // POST add new receipt
 router.post('/:email', (req, res) => {
     const email = req.params.email;
-    const newReceipt = { ...req.body, email, id: Date.now() };
+    const newReceipt = { ...req.body, email, id: Date.now().toString() };
     receipts.push(newReceipt);
     res.status(201).json(newReceipt);
 });
