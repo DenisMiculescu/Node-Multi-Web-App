@@ -5,7 +5,7 @@ const router = express.Router();
 let receipts = [];
 
 // GET all receipts
-router.get('/', (req, res) => {
+router.get('/receipts', (req, res) => {
     res.json(receipts);
 });
 
@@ -16,13 +16,13 @@ router.get('/:email', (req, res) => {
     res.json(userReceipts);
 });
 
-// // POST add new donation
-// router.post('/:email', (req, res) => {
-//     const email = req.params.email;
-//     const new = { ...req.body, email, id: Date.now().toString(), votes: 0 };
-//     donations.push(newDonation);
-//     res.status(201).json(newDonation);
-// });
+// POST add new receipt
+router.post('/:email', (req, res) => {
+    const email = req.params.email;
+    const newReceipt = { ...req.body, email, id: Date.now().toString() };
+    receipts.push(newReceipt);
+    res.status(201).json(newReceipt);
+});
 
 // // PUT edit donation
 // router.put('/:email/:id', (req, res) => {
