@@ -27,7 +27,7 @@ router.post('/:email', (req, res) => {
 // DELETE receipt
 router.delete('/:email/:id', (req, res) => {
     const { email, id } = req.params;
-    const index = receipts.findIndex(d => d.email === email && d.id === id);
+    const index = receipts.findIndex(d => d.email === email && d.id == id);
     if (index !== -1) {
         receipts.splice(index, 1);
         res.status(204).send();
