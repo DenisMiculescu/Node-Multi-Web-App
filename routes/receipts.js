@@ -5,7 +5,7 @@ const router = express.Router();
 let receipts = [];
 
 // GET all receipts
-router.get('/receipts', (req, res) => {
+router.get('/', (req, res) => {
     res.json(receipts);
 });
 
@@ -24,29 +24,28 @@ router.post('/:email', (req, res) => {
     res.status(201).json(newReceipt);
 });
 
-// // PUT edit donation
-// router.put('/:email/:id', (req, res) => {
-//     const { email, id } = req.params;
-//     const index = donations.findIndex(d => d.email === email && d.id === id);
-//     if (index !== -1) {
-//         donations[index] = { ...donations[index], ...req.body };
-//         res.json(donations[index]);
-//     } else {
-//         res.status(404).send('Donation not found');
-//     }
-// });
+// DELETE receipt
+router.delete('/:email/:id', (req, res) => {
+    const { email, id } = req.params;
+    const index = receipts.findIndex(d => d.email === email && d.id === id);
+    if (index !== -1) {
+        receipts.splice(index, 1);
+        res.status(204).send();
+    } else {
+        res.status(404).send('Receipt not found');
+    }
+});
 
-
-// // DELETE donation
-// router.delete('/:email/:id', (req, res) => {
-//     const { email, id } = req.params;
-//     const index = donations.findIndex(d => d.email === email && d.id === id);
-//     if (index !== -1) {
-//         donations.splice(index, 1);
-//         res.status(204).send();
-//     } else {
-//         res.status(404).send('Donation not found');
-//     }
-// });
+// PUT update receipt
+router.put('/:email/:id', (req, res) => {
+    const { email, id } = req.params;
+    const index = receipts.findIndex(d => d.email === email && d.id === id);
+    if (index !== -1) {
+        receipts[index] = { ...receipts[index], ...req.body };
+        res.json(receipts[index]);
+    } else {
+        res.status(404).send('Receipt not found');
+    }
+});
 
 module.exports = router;
