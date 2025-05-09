@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: receipts-api
+    name: adoptions-api
     env: node
     plan: free
     buildCommand: "npm install"
