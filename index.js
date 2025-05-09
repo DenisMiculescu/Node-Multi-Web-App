@@ -10,8 +10,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-const receipts = require('./routes/receipts.js');
-app.use('/receipts', receipts);
+const adoptions = require('./routes/adoptions.js');
+app.use('/adoptions', adoptions);
 
 // Start Server
 app.listen(PORT, () => {
